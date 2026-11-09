@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TSD · Friendly, flat-rate interior design for homes &amp; small offices</title>
-<meta name="description" content="Hi, I'm Tracey. TSD is flat-rate interior design for homes and startup offices across the US: one simple price per square foot, no hourly surprises. Projects in Kentucky, New York City and San Francisco.">
+<title>TSD · Interior design for homes &amp; startup offices</title>
+<meta name="description" content="TSD is friendly, flat-rate interior design for homes and startup offices across the US: one simple price per square foot. Projects in Kentucky, New York City and San Francisco.">
 <link rel="canonical" href="https://traceysun.github.io/TSD/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="TSD · Interior design, one simple price">
-<meta property="og:description" content="Flat-rate interior design for homes and startup offices. One simple price per square foot, no hourly surprises.">
+<meta property="og:title" content="TSD · Interior design for homes &amp; startup offices">
+<meta property="og:description" content="TSD is friendly, flat-rate interior design for homes and startup offices across the US: one simple price per square foot. Projects in Kentucky, New York City and San Francisco.">
 <meta property="og:url" content="https://traceysun.github.io/TSD/">
 <meta property="og:image" content="https://traceysun.github.io/TSD/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,197 +20,90 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="header">
-  <div class="wrap header__row">
-    <a href="./" class="logo" aria-label="TSD home">TSD</a>
-    <nav aria-label="Main" class="nav">
-      <a href="#hello">Hi!</a>
-      <a href="#work">Projects</a>
-      <a href="#packages">Pricing</a>
-      <a href="#faq">Questions</a>
-      <a href="#book" class="nav__book">Say hello</a>
-    </nav>
-  </div>
+<header class="col mast">
+  <a href="./" class="mast__mark" aria-label="TSD home"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 58h48"/><path d="M14 58V24a18 18 0 0 1 36 0v34"/><path d="M22 58V28a10 10 0 0 1 20 0v30"/><path d="M14 24h36"/><path d="M32 6v4"/><path d="M26 46h12v12"/><path d="M26 46v12"/></svg><span class="mast__word">TSD</span></a>
+  <nav aria-label="Main" class="menu"><a href="./" aria-current="page">Home</a><a href="#projects">Projects</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  <div class="band">Interior design · Homes &amp; startup offices · Across the US</div>
 </header>
+<main id="main" class="col">
+  <div class="hero" role="button" tabindex="0" aria-pressed="false" aria-label="Kitchen and living room. Press to see the 3D model I designed it in.">
+    <img src="assets/kitchen-photo.jpg" alt="Open kitchen with oak cabinets and a stone counter, looking through to a sunny living room">
+    <img class="hero__model" src="assets/kitchen-model.jpg" alt="The same kitchen as a 3D design model">
+    <span class="hero__hint" aria-hidden="true">Show the 3D model</span>
+  </div>
 
-<main id="main">
-  <section class="journey" aria-label="From design model to finished room">
-    <div class="journey__stage">
-      <img class="journey__img journey__model" src="assets/living-room-model.jpg" alt="3D design model of a living room with a fireplace wall">
-      <img class="journey__img journey__photo" src="assets/living-room-photo.jpg" alt="The same living room, finished: stone fireplace wall, garden window, lounge chair and walnut coffee table">
-      <span class="journey__label" aria-hidden="true">3D model</span>
-      <div class="journey__copy">
-        <p class="eyebrow">Hi, this is TSD · interior design across the US</p>
-        <h1 class="display">Let's make your place feel like you.</h1>
-        <p>Homes and small offices, designed with care, for one simple price per square foot. Keep scrolling and watch a sketch turn into a real room.</p>
-        <ul class="tags"><li>Simple flat pricing</li><li>Homes &amp; startup offices</li><li>Kentucky · NYC · SF</li></ul>
-        <div class="actions">
-          <a class="cta-solid" href="#book">Say hello <span aria-hidden="true">→</span></a>
-          <a class="cta-line" href="#packages">What does it cost?</a>
-        </div>
-      </div>
-      <div class="journey__bar" aria-hidden="true"></div>
+  <div id="projects" class="tiles">
+    <a class="tile" href="kitchen-living/"><img src="assets/detail-cabinets.jpg" alt="Oak kitchen cabinets with under-cabinet light"><span>A Kitchen Full of Light</span></a>
+    <a class="tile" href="living-room/"><img src="assets/detail-chair.jpg" alt="Cream lounge chair in afternoon light"><span>A Quiet Living Room</span></a>
+    <a class="tile" href="living-room/"><img src="assets/detail-window.jpg" alt="Sheer shade glowing with leaf shadows by a wood-lined window"><span>Letting the Trees In</span></a>
+  </div>
+
+  <section id="about" class="section">
+    <h2 class="h">Hello</h2><hr class="rule">
+    <div class="lede">
+      <p>I'm Tracey, a designer trained in architecture. I love the quiet things that make a room feel good: afternoon light on a wall, a chair you want to sit in, a kitchen that simply works.</p>
+      <p>TSD keeps it easy. Tell me about your space, I'll give you one clear price per square foot, and we'll make something you love coming home to, or coming to work in.</p>
+      <p class="sig">Tracey</p>
     </div>
   </section>
 
-  <section id="hello" class="wrap section">
-    <div class="hello">
-      <div class="hello__text">
-        <p class="eyebrow">Nice to meet you</p>
-        <h2 class="display h2" style="margin-bottom:20px">Hi, I'm Tracey.</h2>
-        <p>I'm a designer trained in architecture, and I love the quiet stuff that makes a room feel good: afternoon light on a wall, a chair you actually want to sit in, a kitchen that just works.</p>
-        <p>I started TSD so getting a thoughtful design doesn't have to mean hourly bills that keep growing. You tell me about your space, I give you one clear price, and we make something you'll love coming home (or coming to work) to.</p>
-        <p class="hello__sign">Tracey</p>
-      </div>
-      <div class="hello__pics">
-        <img src="assets/detail-chair.jpg" alt="Cream lounge chair in afternoon light on a wool rug" loading="lazy">
-        <img src="assets/detail-sink.jpg" alt="Stone countertop and brushed steel faucet with leaf shadows" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <section class="why" aria-label="Why it's easy">
-    <div class="wrap why__grid">
-      <div>
-        <svg class="icon" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-        <h3>No surprise bills</h3>
-        <p>You'll know your price before we start. It's based on your square footage, and it doesn't creep up.</p>
-      </div>
-      <div>
-        <svg class="icon" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        <h3>A real timeline</h3>
-        <p>Every package comes with a delivery window, so you can plan your move-in or your team's first day.</p>
-      </div>
-      <div>
-        <svg class="icon" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M10 20v-6h4v6"/></svg>
-        <h3>See it before it's built</h3>
-        <p>I model your space in 3D, so you can walk through it before buying a single thing.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="work" class="wrap section">
-    <div class="section__head">
-      <div>
-        <p class="eyebrow">Recent projects</p>
-        <h2 class="display h2">From sketch to real life</h2>
-      </div>
-      <p class="muted" style="margin:0;max-width:420px">Each project has a slider so you can compare my 3D model with the finished space.</p>
-    </div>
-    <div style="display:grid;gap:24px">
-      <a href="kitchen-living/" class="work">
-        <img src="assets/kitchen-photo.jpg" alt="Open kitchen with oak cabinets and a stone counter, leading to a sunny living room" loading="lazy">
-        <div class="work__copy">
-          <p class="eyebrow">Project 02 · Home · Full Room</p>
-          <h3>A kitchen that opens to the light</h3>
-          <p>Warm oak cabinets, a long stone counter and a straight line of sight to the windows and fireplace.</p>
-          <span class="work__go">Take a look →</span>
-        </div>
-      </a>
-      <a href="living-room/" class="work">
-        <img src="assets/living-room-photo.jpg" alt="Finished living room with a stone fireplace wall, garden window, lounge chair and walnut coffee table" loading="lazy">
-        <div class="work__copy">
-          <p class="eyebrow">Project 01 · Home · Full Room</p>
-          <h3>A calm living room with a linear fireplace</h3>
-          <p>One quiet stone wall, a window full of leaves, and a chair that catches the afternoon sun.</p>
-          <span class="work__go">Take a look →</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <section class="wrap section" aria-label="Little moments" style="padding-top:24px">
-    <p class="eyebrow">Little moments</p>
-    <h2 class="display h2" style="margin-bottom:28px">The details I care about</h2>
-    <div class="gallery">
-      <figure class="wide"><img src="assets/detail-table.jpg" alt="Walnut coffee table with a ceramic bowl on a textured rug" loading="lazy"><figcaption>Soft wood, soft light.</figcaption></figure>
-      <figure><img src="assets/detail-window.jpg" alt="Sheer shade glowing with leaf shadows beside a wood-lined window" loading="lazy"><figcaption>Let the trees in.</figcaption></figure>
-      <figure><img src="assets/detail-cabinets.jpg" alt="Oak upper cabinets with under-cabinet lighting" loading="lazy"><figcaption>Storage that disappears.</figcaption></figure>
-      <figure><img src="assets/detail-fireplace.jpg" alt="Stone fireplace wall with a linear fireplace" loading="lazy"><figcaption>One calm wall.</figcaption></figure>
-      <figure><img src="assets/detail-hall.jpg" alt="White hallway opening with a slim black sconce" loading="lazy"><figcaption>Quiet edges.</figcaption></figure>
-      <figure class="wide"><img src="assets/detail-sofa.jpg" alt="Cream sofa and low wood table in a sunlit living room" loading="lazy"><figcaption>Room to sprawl.</figcaption></figure>
-    </div>
-  </section>
-
-  <section id="packages" class="wrap section">
-    <div class="section__head">
-      <div style="max-width:620px">
-        <p class="eyebrow">Pricing, kept simple</p>
-        <h2 class="display h2" style="margin-bottom:12px">What will it cost?</h2>
-        <p class="muted" style="margin:0">One flat rate per square foot, never by the hour. Pop in your size and you'll see your price right away.</p>
-      </div>
-      <div role="group" aria-label="Choose space type" class="tabs">
-        <button type="button" class="tab" data-aud="home" aria-pressed="true">My home</button>
-        <button type="button" class="tab" data-aud="office" aria-pressed="false">My office</button>
-      </div>
+  <section id="pricing" class="section">
+    <h2 class="h">Pricing</h2><hr class="rule">
+    <div role="group" aria-label="Choose space type" class="tabs">
+      <button type="button" class="tab" data-aud="home" aria-pressed="true">For homes</button>
+      <button type="button" class="tab" data-aud="office" aria-pressed="false">For offices</button>
     </div>
     <div class="calc">
       <label for="sqft" id="sqft-label">How big is the space?</label>
-      <div style="display:flex;align-items:center;gap:10px">
-        <input id="sqft" type="number" inputmode="numeric" min="100" step="50" value="1200">
-        <span class="muted" style="font-size:16px">sq ft</span>
-      </div>
-      <p id="sqft-hint">Just the rooms you want designed. A living room is usually around 250–400 sq ft.</p>
+      <input id="sqft" type="number" inputmode="numeric" min="100" step="50" value="1200"><span>sq ft</span>
     </div>
+    <p class="calc-hint" id="sqft-hint">Just the rooms you want designed. A living room is usually around 250–400 sq ft.</p>
     <div class="cards" id="cards" aria-live="polite"></div>
     <p class="footnote" id="footnote">This covers the design. You buy furniture and pay contractors directly, and I never add a markup.</p>
   </section>
 
-  <section id="process" class="process">
-    <div class="wrap section">
-      <p class="eyebrow">How we'll work together</p>
-      <h2 class="display h2" style="margin-bottom:48px">Four easy steps</h2>
-      <ol>
-        <li><span class="process__num">01</span><h3>Let's chat</h3><p>A free 20-minute call. Tell me about your space, how you live (or work) in it, and your budget.</p></li>
-        <li><span class="process__num">02</span><h3>Show me around</h3><p>Send photos and a few measurements, or I'll come measure in person.</p></li>
-        <li><span class="process__num">03</span><h3>I design, you react</h3><p>You get layouts, a mood board, 3D views and materials. Tell me what you love and what you don't.</p></li>
-        <li><span class="process__num">04</span><h3>Ready to build</h3><p>Final drawings and a shopping list, ready for you or your contractor.</p></li>
-      </ol>
+  <section id="process" class="section">
+    <h2 class="h">How it works</h2><hr class="rule">
+    <ol class="steps">
+      <li><b>01</b><h3>Let's chat</h3><p>A free 20-minute call about your space, how you use it and your budget.</p></li>
+      <li><b>02</b><h3>Show me around</h3><p>Send photos and a few measurements, or I'll come measure.</p></li>
+      <li><b>03</b><h3>Design together</h3><p>Layouts, a mood board and 3D views. Tell me what you love.</p></li>
+      <li><b>04</b><h3>Ready to build</h3><p>Final drawings and a shopping list for you or your contractor.</p></li>
+    </ol>
+  </section>
+
+  <section id="faq" class="section">
+    <h2 class="h">Questions</h2><hr class="rule">
+    <div class="faq">
+      <details><summary>What does the flat rate include?</summary><p>All the design work in your package: drawings, 3D views, a shopping list and rounds of changes. Furniture, materials and construction are paid separately, straight to the stores and contractors, with no markup from me.</p></details>
+      <details><summary>How do you measure square footage?</summary><p>Only the rooms we're designing. We agree on the number during our first call, and your price is locked in after that.</p></details>
+      <details><summary>Do you work remotely?</summary><p>Yes, anywhere in the US. Recent projects are in Kentucky, New York City and San Francisco. In-person visits can be added (travel at cost).</p></details>
+      <details><summary>We're a small startup. Is that too small?</summary><p>Not at all. I plan office layouts around your next round of hiring, so the space grows with you.</p></details>
+      <details><summary>Do you do permit drawings?</summary><p>Packages cover interior design. If your project needs permits or engineering, I'll work alongside your architect, engineer or contractor; those are quoted separately.</p></details>
+      <details><summary>How does paying work?</summary><p>Half when we start, half at handoff. You always see the full price first.</p></details>
     </div>
   </section>
 
-  <section id="faq" class="wrap section faq">
-    <p class="eyebrow">Good questions</p>
-    <h2 class="display h2" style="margin-bottom:32px">Things people ask</h2>
-    <div class="faq__list">
-      <details><summary>What does the flat rate include?</summary><p>All the design work in your package: the drawings, 3D views, shopping list and revision rounds. Furniture, materials and construction are paid separately, straight to the stores and contractors, and I never add a markup.</p></details>
-      <details><summary>How do you measure square footage?</summary><p>Only the rooms we're designing, not your whole home unless you want the whole thing done. We agree on the number during our first call, and your price is locked in after that.</p></details>
-      <details><summary>My project is a little different. Can you still help?</summary><p>Probably! Say hello and tell me about it. I'll mix packages or give you a custom flat price, still fixed and still up front.</p></details>
-      <details><summary>Do you work remotely?</summary><p>Yes, anywhere in the US. Recent projects are in Kentucky, New York City and San Francisco. Most of the work happens over photos and video calls, and I can visit in person if you'd like (travel at cost).</p></details>
-      <details><summary>We're a small startup. Is that too small?</summary><p>Not at all. I plan office layouts around your next round of hiring, so your space grows with you instead of needing a redo.</p></details>
-      <details><summary>Do you do permit drawings?</summary><p>My packages cover interior design. If your project needs permits or engineering, I'll work alongside your architect, engineer or contractor; those are quoted separately.</p></details>
-      <details><summary>How does paying work?</summary><p>Half when we start, half when I hand everything over. You'll always see the full price first.</p></details>
-    </div>
-  </section>
-
-  <section id="book" class="book">
-    <div class="wrap book__row">
-      <div class="book__intro">
-        <h2 class="display" style="font-size:clamp(38px,4.5vw,62px);margin-bottom:16px">Say hello!</h2>
-        <p>Tell me a little about your space. I'll write back to set up a free 20-minute chat, no pressure at all.</p>
-        <p>Or just email me at <a href="mailto:suntracey0327@gmail.com">suntracey0327@gmail.com</a></p>
-        <img class="book__pic" src="assets/kitchen-photo.jpg" alt="Sunny open kitchen and living room" loading="lazy">
-      </div>
+  <section id="contact" class="section">
+    <h2 class="h">Say hello</h2><hr class="rule">
+    <p class="contact__mail"><a href="mailto:suntracey0327@gmail.com">suntracey0327@gmail.com</a></p>
+    <div class="contact">
+      <img src="assets/detail-table.jpg" alt="Walnut coffee table with a ceramic bowl in afternoon light" loading="lazy">
       <form class="form" id="book-form">
-        <div class="form__pair">
-          <label>Your name<input type="text" name="name" required autocomplete="name"></label>
-          <label>Email<input type="email" name="email" required autocomplete="email"></label>
-        </div>
-        <div class="form__pair">
-          <label>I'm thinking about<select name="type"><option>A room in my home</option><option>My whole home</option><option>Our startup office</option><option>Not sure yet</option></select></label>
-          <label>Rough size (sq ft)<input type="number" name="size" min="0" inputmode="numeric"></label>
-        </div>
-        <label>Tell me about it<textarea name="notes" rows="4" placeholder="What's bugging you about the space? What do you love?"></textarea></label>
-        <button type="submit">Send it my way</button>
-        <p class="form__note">This opens your email app with everything filled in, addressed to me.</p>
+        <label>Your name<input type="text" name="name" required autocomplete="name"></label>
+        <label>Email<input type="email" name="email" required autocomplete="email"></label>
+        <label>I'm thinking about<select name="type"><option>A room in my home</option><option>My whole home</option><option>Our startup office</option><option>Not sure yet</option></select></label>
+        <label>Rough size (sq ft)<input type="number" name="size" min="0" inputmode="numeric"></label>
+        <label>Tell me about it<textarea name="notes" rows="4"></textarea></label>
+        <button type="submit">Send</button>
+        <p class="form__note">Opens your email app with everything filled in.</p>
       </form>
     </div>
   </section>
 </main>
-
-<footer class="wrap footer">
-  <span>© 2026 TSD · Made with care in Kentucky, New York City &amp; San Francisco</span>
-  <span><a href="mailto:suntracey0327@gmail.com">suntracey0327@gmail.com</a></span>
+<footer class="col">
+  <div class="foot__band"></div>
+  <div class="foot"><span>© 2026 TSD</span><span>Kentucky · New York City · San Francisco</span><a href="mailto:suntracey0327@gmail.com">suntracey0327@gmail.com</a></div>
 </footer>
 <script src="app.js"></script>
 </body>

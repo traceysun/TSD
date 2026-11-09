@@ -2,33 +2,17 @@
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Scroll journey: the 3D model resolves into the finished room. */
-  var journey = document.querySelector(".journey");
-  if (journey && !reduce) {
-    var photo = journey.querySelector(".journey__photo");
-    var model = journey.querySelector(".journey__model");
-    var bar = journey.querySelector(".journey__bar");
-    var label = journey.querySelector(".journey__label");
-    var ticking = false;
-    var update = function () {
-      ticking = false;
-      var r = journey.getBoundingClientRect();
-      var span = journey.offsetHeight - window.innerHeight;
-      var p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
-      var fade = Math.min(1, Math.max(0, (p - 0.12) / 0.7));
-      var eased = fade * fade * (3 - 2 * fade);
-      var zoom = 1 + 0.06 * p;
-      photo.style.opacity = eased.toFixed(3);
-      photo.style.transform = "scale(" + zoom + ")";
-      model.style.transform = "scale(" + zoom + ")";
-      bar.style.transform = "scaleX(" + p.toFixed(3) + ")";
-      label.textContent = eased > 0.5 ? "Completed" : "3D model";
+  /* Hero: tap to toggle between the finished room and the 3D model (hover does it on desktop). */
+  var hero = document.querySelector(".hero");
+  if (hero) {
+    var hint = hero.querySelector(".hero__hint");
+    var toggle = function () {
+      var on = hero.getAttribute("aria-pressed") !== "true";
+      hero.setAttribute("aria-pressed", String(on));
+      if (hint) hint.textContent = on ? "Show the finished room" : "Show the 3D model";
     };
-    window.addEventListener("scroll", function () {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
-    }, { passive: true });
-    window.addEventListener("resize", update);
-    update();
+    hero.addEventListener("click", toggle);
+    hero.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
   }
 
   /* Pricing calculator */
@@ -76,7 +60,7 @@
           '<p class="card__fee">Your price: ' + money(total) + (raw < p.min ? " (minimum)" : "") + "</p>" +
           '<p class="card__meta">' + money(p.min) + " minimum · ready in " + esc(p.time) + "</p>" +
           "<ul>" + p.items.map(function (it) { return "<li>" + check + "<span>" + esc(it) + "</span></li>"; }).join("") + "</ul>" +
-          '<a href="#book" class="choose">I want this one</a></article>';
+          '<a href="#contact" class="choose">I want this one</a></article>';
       }).join("");
       document.getElementById("sqft-label").textContent = COPY[aud].label;
       document.getElementById("sqft-hint").textContent = COPY[aud].hint;
