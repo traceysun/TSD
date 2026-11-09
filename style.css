@@ -194,3 +194,8 @@ img { max-width: 100%; }
 .card--featured { background: var(--paper); color: var(--charcoal); border: 2px solid var(--terracotta); }
 .card--featured .choose { background: var(--terracotta); color: var(--white) !important; }
 .work { border-radius: 32px; }
+
+/* ALL CAPS everywhere */
+body, button, input, select, textarea { text-transform: uppercase; letter-spacing: 0.02em; }
+.display { letter-spacing: 0.005em; }
+input::placeholder, textarea::placeholder { text-transform: uppercase; }
