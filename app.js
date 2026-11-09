@@ -34,27 +34,27 @@
   /* Pricing calculator */
   var PACKAGES = {
     home: [
-      { name: "Refresh", blurb: "Restyle your space using mostly what you have.", rate: 1.0, min: 350, time: "1–2 weeks", featured: false,
-        items: ["Video consult + photo review", "Styling plan & furniture layout", "Shoppable list", "1 revision round"] },
-      { name: "Full Design", blurb: "A complete design for the spaces you choose.", rate: 2.0, min: 800, time: "2–4 weeks", featured: true,
-        items: ["Measured floor plan & furniture layout", "Concept board + 3D model views", "Paint, lighting & material specs", "Full shoppable list", "2 revision rounds"] },
-      { name: "Renovation-Ready", blurb: "Design plus drawings your contractor can build from.", rate: 3.5, min: 2500, time: "4–8 weeks", featured: false,
-        items: ["Everything in Full Design", "Whole-home palette & flow plan", "Contractor-ready drawings & elevations", "Install-day checklist", "3 revision rounds"] }
+      { name: "Quick Refresh", blurb: "Love your space again, mostly with what you already have.", rate: 1.0, min: 350, time: "1–2 weeks", featured: false,
+        items: ["Video chat + photo walkthrough", "New layout & styling plan", "A shopping list of the right pieces", "1 round of changes"] },
+      { name: "Full Room", blurb: "The whole thing, designed start to finish.", rate: 2.0, min: 800, time: "2–4 weeks", featured: true,
+        items: ["Measured floor plan & furniture layout", "Mood board + 3D views of your room", "Paint, lighting & materials picked", "Full shopping list", "2 rounds of changes"] },
+      { name: "Reno-Ready", blurb: "Design plus drawings your contractor can build from.", rate: 3.5, min: 2500, time: "4–8 weeks", featured: false,
+        items: ["Everything in Full Room", "A palette that flows room to room", "Contractor-ready drawings", "Install-day checklist", "3 rounds of changes"] }
     ],
     office: [
-      { name: "Launch Office", blurb: "Get a first office working on day one.", rate: 0.5, min: 750, time: "2–3 weeks", featured: false,
-        items: ["Desk & seating layout", "Furniture & equipment list", "Brand-aligned color & finish picks", "1 revision round"] },
-      { name: "Team Floor", blurb: "A full workplace plan for a growing team.", rate: 0.9, min: 2000, time: "3–5 weeks", featured: true,
-        items: ["Zoning: focus, meeting & social areas", "Concept board + 3D model views", "Lighting, acoustics & power plan", "Vendor-ready furniture schedule", "2 revision rounds"] },
-      { name: "Scale-Up", blurb: "Multi-zone design planned for your next hiring step.", rate: 1.5, min: 5000, time: "5–8 weeks", featured: false,
-        items: ["Everything in Team Floor", "Headcount growth plan", "Contractor & landlord drawings", "Move-in coordination checklist", "3 revision rounds"] }
+      { name: "First Office", blurb: "Your first real office, set up and ready on day one.", rate: 0.5, min: 750, time: "2–3 weeks", featured: false,
+        items: ["Desk & seating layout", "Furniture & equipment list", "Colors & finishes that feel like your brand", "1 round of changes"] },
+      { name: "Growing Team", blurb: "A full plan for a team that's getting bigger.", rate: 0.9, min: 2000, time: "3–5 weeks", featured: true,
+        items: ["Spots to focus, meet and hang out", "Mood board + 3D views", "Lighting, acoustics & power plan", "Furniture list ready to order", "2 rounds of changes"] },
+      { name: "Next Floor", blurb: "Planned for your next big hiring push.", rate: 1.5, min: 5000, time: "5–8 weeks", featured: false,
+        items: ["Everything in Growing Team", "A plan for future headcount", "Drawings for your contractor & landlord", "Move-in checklist", "3 rounds of changes"] }
     ]
   };
   var COPY = {
-    home: { label: "Size of the space you want designed", hint: "Floor area of just the rooms you want designed. A living room is often 250–400 sq ft.",
-      note: "Home prices cover design only. Furniture and contractor costs are paid directly to vendors, with no markup.", sqft: 1200 },
-    office: { label: "Size of your office", hint: "Usable floor area of your office. Not sure? Your lease usually lists it.",
-      note: "Office prices cover design only. Furniture, IT and build-out are purchased directly from vendors, with no markup.", sqft: 3000 }
+    home: { label: "How big is the space?", hint: "Just the rooms you want designed. A living room is usually around 250–400 sq ft.",
+      note: "This covers the design. You buy furniture and pay contractors directly, and I never add a markup." },
+    office: { label: "How big is your office?", hint: "The usable floor area. Not sure? It's usually on your lease.",
+      note: "This covers the design. You buy furniture, IT and build-out directly from vendors, and I never add a markup." }
   };
   var cards = document.getElementById("cards");
   if (cards) {
@@ -69,14 +69,14 @@
       cards.innerHTML = PACKAGES[aud].map(function (p) {
         var raw = p.rate * size, total = Math.max(raw, p.min);
         return '<article class="card' + (p.featured ? " card--featured" : "") + '">' +
-          (p.featured ? '<span class="badge">Most popular</span>' : "") +
+          (p.featured ? '<span class="badge">Most people pick this</span>' : "") +
           "<h3>" + esc(p.name) + "</h3>" +
           '<p class="card__blurb">' + esc(p.blurb) + "</p>" +
           '<div class="card__rate"><strong>$' + p.rate.toFixed(2) + "</strong><span>per sq ft</span></div>" +
-          '<p class="card__fee">Your fee: ' + money(total) + (raw < p.min ? " (minimum)" : "") + "</p>" +
-          '<p class="card__meta">' + money(p.min) + " minimum · Delivered in " + esc(p.time) + "</p>" +
+          '<p class="card__fee">Your price: ' + money(total) + (raw < p.min ? " (minimum)" : "") + "</p>" +
+          '<p class="card__meta">' + money(p.min) + " minimum · ready in " + esc(p.time) + "</p>" +
           "<ul>" + p.items.map(function (it) { return "<li>" + check + "<span>" + esc(it) + "</span></li>"; }).join("") + "</ul>" +
-          '<a href="#book" class="choose">Choose ' + esc(p.name) + "</a></article>";
+          '<a href="#book" class="choose">I want this one</a></article>';
       }).join("");
       document.getElementById("sqft-label").textContent = COPY[aud].label;
       document.getElementById("sqft-hint").textContent = COPY[aud].hint;
