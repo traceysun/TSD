@@ -217,3 +217,12 @@ h3 { font-size: 23px; margin: 0; }
 .pieces a, .pieces__none { font: 400 13px var(--mono); }
 .pieces__none { color: var(--grey); }
 @media (max-width: 560px) { .pieces > div { grid-template-columns: minmax(0, 1fr); } }
+
+/* Project 02 title: finished photo fades into the 3D model on scroll */
+.xfade__stage { position: relative; }
+.xfade__frame { position: relative; overflow: hidden; }
+.xfade__stage img { display: block; width: 100%; height: auto; }
+.xfade__from { position: absolute; inset: 0; height: 100% !important; object-fit: cover; opacity: 0; transform-origin: 68% 48%; will-change: opacity, transform; }
+.js .xfade__from { opacity: 1; }
+.js .xfade__track { height: var(--xfade-h, auto); }
+.js .xfade__stage { position: sticky; top: var(--xfade-top, 16px); }

@@ -42,6 +42,34 @@
   add(".hello__pic", -30);
   add(".steps li:nth-child(even)", 18);
 
+  /* 4. Project title photo fades into the 3D model while the image holds still. */
+  var xf = document.querySelector(".xfade");
+  var xfTrack = xf && xf.querySelector(".xfade__track");
+  var xfStage = xf && xf.querySelector(".xfade__stage");
+  var xfFrom = xf && xf.querySelector(".xfade__from");
+  var xfRun = 0;
+  var xfSize = function () {
+    if (!xf) return;
+    var vh = window.innerHeight, h = xfStage.offsetHeight;
+    xfRun = Math.round(vh * 0.75);
+    xfTrack.style.setProperty("--xfade-h", h + xfRun + "px");
+    xf.style.setProperty("--xfade-top", Math.min(16, vh - h - 16) + "px");
+  };
+  var xfUpdate = function () {
+    if (!xf || !xfRun) return;
+    var top = parseFloat(xf.style.getPropertyValue("--xfade-top")) || 0;
+    var t = (top - xfTrack.getBoundingClientRect().top) / xfRun; /* 0 when the image locks in place, 1 when it lets go */
+    t = Math.max(0, Math.min(1, t));
+    var e = t * t * (3 - 2 * t);
+    xfFrom.style.opacity = (1 - e).toFixed(3);
+    xfFrom.style.transform = "scale(" + (1 + e * 0.22).toFixed(4) + ")";
+  };
+  if (xf) {
+    xfSize();
+    xf.querySelectorAll("img").forEach(function (im) { if (!im.complete) im.addEventListener("load", function () { xfSize(); onScroll(); }); });
+    window.addEventListener("resize", xfSize);
+  }
+
   var ticking = false;
   var update = function () {
     ticking = false;
@@ -49,6 +77,7 @@
     var max = root.scrollHeight - vh;
     prog.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0).toFixed(4) + ")";
     if (cover && y < vh * 1.3) cover.style.transform = "translate3d(0," + (y * 0.3).toFixed(1) + "px,0) scale(" + (1 + (y / vh) * 0.12).toFixed(4) + ")";
+    xfUpdate();
     if (window.innerWidth < 720) return;
     for (var i = 0; i < par.length; i++) {
       var p = par[i], r = p.el.getBoundingClientRect();
