@@ -140,8 +140,8 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spa
 /* Steps */
 .steps-sec { padding: var(--gap) var(--pad); }
 .steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
-.steps b { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(64px, 8vw, 130px); line-height: 0.9; letter-spacing: -0.05em; color: transparent; -webkit-text-stroke: 1.5px var(--charcoal); }
-.steps li:hover b { color: var(--terracotta); -webkit-text-stroke-color: var(--terracotta); }
+.steps b { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(64px, 8vw, 130px); line-height: 0.9; letter-spacing: -0.05em; color: var(--terracotta); -webkit-text-stroke: 0; }
+.steps li:hover b { color: var(--charcoal); }
 .steps h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 30px; margin: 10px 0 6px; }
 .steps p { margin: 0; font-size: 16px; color: var(--grey); }
 
@@ -167,7 +167,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spa
 
 /* Footer */
 .foot { overflow: hidden; padding: 30px var(--pad) 24px; }
-.foot__word { font-family: var(--display); font-weight: 800; font-size: 27vw; line-height: 0.8; letter-spacing: -0.07em; text-align: center; color: transparent; -webkit-text-stroke: 1.5px var(--charcoal); margin: 0 0 30px; user-select: none; }
+.foot__word { font-family: var(--display); font-weight: 800; font-size: 27vw; line-height: 0.8; letter-spacing: -0.07em; text-align: center; color: var(--terracotta); -webkit-text-stroke: 0; margin: 0 0 30px; user-select: none; }
 .foot__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* Project page */
