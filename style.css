@@ -205,3 +205,5 @@ h3 { font-size: 23px; margin: 0; }
 .ptitle h1 { max-width: 18ch; }
 .rooms__head h2, .ptitle h1 { text-wrap: balance; }
 .rooms__head h2 { max-width: 24ch; }
+.ptitle__img { margin-top: 24px; }
+.ptitle__img img { width: 100%; height: auto; }
