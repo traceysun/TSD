@@ -226,3 +226,50 @@ main.col { max-width: 1180px; margin: 0 auto; padding: 130px var(--pad) 0; }
 
 section[id], .room { scroll-margin-top: 90px; }
 .ptitle p { margin-top: 18px; }
+
+/* 3D modeled room */
+.room3d { position: relative; aspect-ratio: 1 / 0.78; perspective: 1700px; cursor: grab; touch-action: pan-y; user-select: none; }
+.room3d:active { cursor: grabbing; }
+.room3d__stage { position: absolute; left: 50%; top: 56%; width: 0; height: 0; transform-style: preserve-3d; transform: scale(var(--k, 1)) rotateX(calc(var(--rx, -15) * 1deg)) rotateY(calc(var(--ry, -28) * 1deg)); will-change: transform; }
+.bx { position: absolute; left: 0; top: 0; transform-style: preserve-3d; }
+.bx i { position: absolute; left: 0; top: 0; display: block; transform-origin: 0 0; }
+.hero .hint { margin-top: 6px; }
+
+/* Pricing teaser on the homepage */
+.teaser { padding: var(--gap) var(--pad); background: var(--charcoal); color: var(--linen); display: grid; gap: 22px; justify-items: start; }
+.teaser .label { color: var(--sand); margin: 0; }
+.teaser .btn { background: var(--linen); color: var(--charcoal); }
+.teaser .btn:hover { background: var(--terracotta); color: var(--white); }
+
+/* Plain pricing page: one simple font, no effects */
+.plain { background: var(--white); font-family: var(--body); }
+.plain .nav__logo { font-family: var(--body); font-weight: 600; letter-spacing: 0.08em; }
+.nav a[aria-current="page"] { color: var(--terracotta); }
+.pp { max-width: 980px; margin: 0 auto; padding: 120px var(--pad) 60px; }
+.pp h1 { font-family: var(--body); font-weight: 600; font-size: 40px; letter-spacing: -0.01em; margin: 0 0 12px; }
+.pp h2 { font-family: var(--body); font-weight: 600; font-size: 24px; margin: 56px 0 14px; }
+.pp__lede { max-width: 620px; margin: 0 0 32px; color: var(--grey); }
+.pp__list { padding-left: 20px; display: grid; gap: 8px; max-width: 680px; }
+.plain .tabs { border-color: var(--greige); margin-bottom: 22px; }
+.plain .tab { color: var(--charcoal); font-family: var(--body); font-size: 15px; letter-spacing: 0; text-transform: none; }
+.plain .tab[aria-pressed="true"] { background: var(--charcoal); color: var(--white); }
+.plain .calc { align-items: center; }
+.plain .calc label { font-family: var(--body); font-style: normal; font-weight: 600; font-size: 18px; }
+.plain .calc input { width: 130px; min-height: 46px; border: 1px solid var(--grey); border-radius: 8px; padding: 8px 12px; font-family: var(--body); font-weight: 600; font-size: 18px; letter-spacing: 0; color: var(--charcoal); background: var(--white); }
+.plain .calc input:focus { outline: 2px solid var(--charcoal); outline-offset: 2px; }
+.plain .calc span { font-family: var(--body); font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--grey); }
+.plain .calc-hint, .plain .footnote { color: var(--grey); font-size: 15px; }
+.plain .calc-hint { margin-bottom: 28px; }
+.plain .cards { perspective: none; }
+.plain .card { transform: none; border: 1px solid var(--greige); border-radius: 12px; padding: 24px; gap: 8px; }
+.plain .card--featured { background: var(--white); border: 2px solid var(--charcoal); }
+.plain .card h3 { font-family: var(--body); font-weight: 600; font-size: 20px; letter-spacing: 0; }
+.plain .badge { font-family: var(--body); font-size: 12px; letter-spacing: 0; text-transform: none; border: 0; padding: 3px 10px; background: var(--linen); }
+.plain .card__rate strong { font-family: var(--body); font-weight: 600; font-size: 34px; letter-spacing: -0.01em; }
+.plain .card__rate span, .plain .card__meta { font-family: var(--body); font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--grey); opacity: 1; }
+.plain .card__fee { font-family: var(--body); font-style: normal; font-weight: 600; font-size: 17px; }
+.plain .card ul { border-top: 1px solid var(--greige); list-style: disc; padding-left: 18px; }
+.plain .choose { font-family: var(--body); font-size: 15px; letter-spacing: 0; text-transform: none; border-radius: 8px; background: var(--charcoal); color: var(--white); border: 0; }
+.plain .choose:hover { background: var(--grey); }
+.plain .btn { font-family: var(--body); font-size: 16px; letter-spacing: 0; text-transform: none; border-radius: 8px; }
+.plain .foot__row { font-family: var(--body); font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--grey); border-top: 1px solid var(--greige); padding-top: 20px; }

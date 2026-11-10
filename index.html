@@ -24,7 +24,7 @@
 <nav class="nav" aria-label="Main">
   <a class="nav__logo" href="./" aria-label="TSD home">TSD</a>
   <a href="#projects">Rooms</a>
-  <a href="#pricing">Pricing</a>
+  <a href="pricing/">Pricing</a>
   <a class="opt" href="#about">About</a>
   <a class="opt" href="#faq">Questions</a>
   <a class="nav__cta" href="#contact">Say hello</a>
@@ -35,20 +35,15 @@
     <div>
       <p class="label">Interior design · homes &amp; startup offices</p>
       <h1>Rooms that <em>feel like you.</em></h1>
-      <p>I draw your space in 3D first, so you can see it before anything gets built. One simple price per square foot, anywhere in the US.</p>
+      <p>Full interior design: layout, furniture, lighting, colors and styling, all shown to you in 3D before anything is ordered. One simple price per square foot.</p>
       <div class="actions">
         <a class="btn" href="#contact">Say hello <span aria-hidden="true">→</span></a>
-        <a class="btn btn--line" href="#pricing">What does it cost?</a>
+        <a class="btn btn--line" href="pricing/">What does it cost?</a>
       </div>
     </div>
-    <div class="scene" id="scene" aria-hidden="true">
-      <div class="scene__stage">
-        <div class="plane plane--ghost"><img src="assets/den-model.jpg" alt=""></div>
-        <div class="plane plane--r"><img src="assets/detail-cabinets.jpg" alt=""></div>
-        <div class="plane plane--main"><img src="assets/den-photo.jpg" alt=""></div>
-        <div class="plane plane--l"><img src="assets/detail-dining.jpg" alt=""></div>
-        <div class="plane plane--s"><img src="assets/detail-den-chair.jpg" alt=""></div>
-      </div>
+    <div>
+      <div class="room3d" id="room3d" role="img" aria-label="A 3D model of a TSD living room: stone fireplace wall, brown sofa, leather lounge chair, glass coffee table and arc lamp on a green rug"><div class="room3d__stage"></div></div>
+      <p class="hint">A real TSD living room, modeled in 3D · drag to look around</p>
     </div>
   </section>
 
@@ -63,8 +58,8 @@
     <div class="flip__sticky">
       <div class="flip__text">
         <p class="label">How I work</p>
-        <h2 class="big"><span class="flip__a">First I <em>draw</em> it.</span><span class="flip__b">Then it's <em>real.</em></span></h2>
-        <p>Every project starts as a 3D model you can look around in. Keep scrolling to flip this one over.</p>
+        <h2 class="big"><span class="flip__a">First I <em>design</em> it.</span><span class="flip__b">Then it's <em>real.</em></span></h2>
+        <p>I plan the layout and pick the furniture, lighting, colors and finishes, then show you the whole room in 3D. Keep scrolling to flip this one over.</p>
       </div>
       <div class="flip__scene">
         <div class="flip__card">
@@ -101,31 +96,16 @@
     <div class="hello__text" data-r>
       <p class="label">Hello</p>
       <h2 class="big">I'm <em>Tracey.</em></h2>
-      <p>I'm a designer trained in architecture, and I love the small things that make a room feel good: <em>afternoon light on a wall,</em> a chair you want to sink into, a kitchen that simply works.</p>
+      <p>I'm an interior designer trained in architecture, and I love the small things that make a room feel good: <em>afternoon light on a wall,</em> a chair you want to sink into, a kitchen that simply works.</p>
       <p>TSD keeps it easy. Tell me about your space, I'll give you one clear price, and we'll make something you love coming home to.</p>
       <p class="sig">Tracey</p>
     </div>
   </section>
 
-  <section class="pricing" id="pricing">
-    <div class="pricing__head" data-r>
-      <div>
-        <p class="label">Pricing, kept simple</p>
-        <h2 class="big">What will it <em>cost?</em></h2>
-      </div>
-      <div role="group" aria-label="Choose space type" class="tabs">
-        <button type="button" class="tab" data-aud="home" aria-pressed="true">My home</button>
-        <button type="button" class="tab" data-aud="office" aria-pressed="false">My office</button>
-      </div>
-    </div>
-    <div class="calc" data-r>
-      <label for="sqft" id="sqft-label">How big is the space?</label>
-      <input id="sqft" type="number" inputmode="numeric" min="100" step="50" value="1200">
-      <span>sq ft</span>
-    </div>
-    <p class="calc-hint" id="sqft-hint">Just the rooms you want designed. A living room is usually around 250–400 sq ft.</p>
-    <div class="cards" id="cards" aria-live="polite"></div>
-    <p class="footnote" id="footnote">This covers the design. You buy furniture and pay contractors directly, and I never add a markup.</p>
+  <section class="teaser" data-r>
+    <p class="label">Pricing, kept simple</p>
+    <h2 class="big">From <em>$1</em> per square foot.</h2>
+    <a class="btn" href="pricing/">See what yours would cost <span aria-hidden="true">→</span></a>
   </section>
 
   <section class="steps-sec" id="process">
@@ -136,8 +116,8 @@
     <ol class="steps">
       <li data-r><b>01</b><h3>Let's chat</h3><p>A free 20-minute call about your space, how you use it and your budget.</p></li>
       <li data-r><b>02</b><h3>Show me around</h3><p>Send photos and a few measurements, or I'll come measure.</p></li>
-      <li data-r><b>03</b><h3>Design together</h3><p>Layouts, a mood board and 3D views. Tell me what you love.</p></li>
-      <li data-r><b>04</b><h3>Ready to build</h3><p>Final drawings and a shopping list for you or your contractor.</p></li>
+      <li data-r><b>03</b><h3>Design together</h3><p>Layout, furniture, lighting, colors and materials, shown in 3D. Tell me what you love.</p></li>
+      <li data-r><b>04</b><h3>Make it real</h3><p>A full shopping list, drawings and styling notes, and I stay on call while it comes together.</p></li>
     </ol>
   </section>
 
@@ -147,7 +127,7 @@
       <h2 class="big">Things people <em>ask.</em></h2>
     </div>
     <div class="faq" data-r>
-      <details><summary>What does the flat rate include?</summary><p>All the design work in your package: drawings, 3D views, a shopping list and rounds of changes. Furniture, materials and construction are paid separately, straight to the stores and contractors, with no markup from me.</p></details>
+      <details><summary>What does the flat rate include?</summary><p>The full interior design for your space: layout, furniture, lighting, colors, materials and styling, with 3D views, a shopping list and rounds of changes. Furniture, materials and construction are paid separately, straight to the stores and contractors, with no markup from me.</p></details>
       <details><summary>How do you measure square footage?</summary><p>Only the rooms we're designing. We agree on the number during our first call, and your price is locked in after that.</p></details>
       <details><summary>Do you work remotely?</summary><p>Yes, anywhere in the US. Recent projects are in Kentucky, New York City and San Francisco. In-person visits can be added (travel at cost).</p></details>
       <details><summary>We're a small startup. Is that too small?</summary><p>Not at all. I plan office layouts around your next round of hiring, so the space grows with you.</p></details>
