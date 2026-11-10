@@ -14,67 +14,6 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* Depth photo: the real room photo with a depth map, so it shifts in 3D as you look around */
-  var depthEl = document.getElementById("depth");
-  var drawDepth = null, ddrag = false, dlastX = 0, dlastY = 0, dox = 0, doy = 0, dtx = 0, dty = 0;
-  if (depthEl && !reduce) {
-    (function () {
-      var cv = depthEl.querySelector("canvas");
-      var gl = cv.getContext("webgl", { antialias: false }) || cv.getContext("experimental-webgl");
-      if (!gl) return;
-      var sh = function (type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
-      var pr = gl.createProgram();
-      gl.attachShader(pr, sh(gl.VERTEX_SHADER, "attribute vec2 a;varying vec2 v;void main(){v=a*0.5+0.5;gl_Position=vec4(a,0.,1.);}"));
-      gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, "precision mediump float;varying vec2 v;uniform sampler2D i;uniform sampler2D d;uniform vec2 o;void main(){vec2 uv=(v-0.5)/1.07+0.5;vec2 p=uv;for(int k=0;k<4;k++){float z=texture2D(d,p).r;p=uv+o*(z-0.32);}gl_FragColor=texture2D(i,clamp(p,0.002,0.998));}"));
-      gl.linkProgram(pr);
-      if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
-      gl.useProgram(pr);
-      var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-      var loc = gl.getAttribLocation(pr, "a"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-      var uo = gl.getUniformLocation(pr, "o");
-      gl.uniform1i(gl.getUniformLocation(pr, "i"), 0); gl.uniform1i(gl.getUniformLocation(pr, "d"), 1);
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-      var ready = 0;
-      var tex = function (unit, src) {
-        var im = new Image();
-        im.onload = function () {
-          var t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t);
-          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
-          if (++ready === 2) { size(); depthEl.classList.add("on"); }
-        };
-        im.src = src;
-      };
-      var size = function () {
-        var r = Math.min(window.devicePixelRatio || 1, 2);
-        cv.width = Math.round(depthEl.clientWidth * r); cv.height = Math.round(depthEl.clientHeight * r);
-        gl.viewport(0, 0, cv.width, cv.height);
-      };
-      window.addEventListener("resize", size);
-      tex(0, "assets/hero-room.jpg"); tex(1, "assets/hero-room-depth.jpg");
-      depthEl.addEventListener("pointerdown", function (e) { ddrag = true; dlastX = e.clientX; dlastY = e.clientY; });
-      window.addEventListener("pointermove", function (e) {
-        if (!ddrag) return;
-        dtx = clamp(dtx + (e.clientX - dlastX) / 260, -1, 1); dty = clamp(dty + (e.clientY - dlastY) / 260, -1, 1);
-        dlastX = e.clientX; dlastY = e.clientY;
-      }, { passive: true });
-      var up = function () { ddrag = false; };
-      window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
-      drawDepth = function (t) {
-        if (ready < 2) return;
-        var b = depthEl.getBoundingClientRect();
-        if (b.bottom < 0 || b.top > window.innerHeight) return;
-        var gx = dtx + (ddrag ? 0 : px * 1.6 + Math.sin(t / 2400) * 0.35), gy = dty + (ddrag ? 0 : py * 1.2);
-        dox += (clamp(gx, -1.2, 1.2) - dox) * 0.08; doy += (clamp(gy, -1.2, 1.2) - doy) * 0.08;
-        gl.uniform2f(uo, dox * 0.026, -doy * 0.018);
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-        depthEl.style.setProperty("--ty", (dox * 5).toFixed(2) + "deg"); depthEl.style.setProperty("--tx", (-doy * 4).toFixed(2) + "deg");
-      };
-    })();
-  }
-
   /* Motion: 3D hero scene, scroll flip, spinning ring. One animation loop. */
   var stage = document.querySelector(".scene__stage");
   var flip = document.getElementById("flip");
@@ -112,7 +51,6 @@
         stage.style.setProperty("--rx", rx.toFixed(2));
         stage.style.setProperty("--ry", ry.toFixed(2));
       }
-      if (drawDepth) drawDepth(t);
       if (flip) {
         var r = flip.getBoundingClientRect();
         var span = flip.offsetHeight - window.innerHeight;

@@ -281,3 +281,23 @@ section[id], .room { scroll-margin-top: 90px; }
 .depth canvas { opacity: 0; }
 .depth.on canvas { opacity: 1; }
 .hero .hint { margin-top: 18px; }
+
+/* White header with title + nav, then a giant room image */
+.top { background: var(--white); text-align: center; padding: 22px var(--pad) 16px; }
+.top__title { display: inline-block; font-family: var(--display); font-weight: 800; font-size: clamp(44px, 6vw, 84px); line-height: 1; letter-spacing: 0.02em; text-decoration: none; }
+.top__sub { margin: 6px 0 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); }
+.top__nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px clamp(16px, 3.4vw, 46px); font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+.top__nav a { text-decoration: none; padding: 8px 2px; }
+.top__nav a:hover, .top__nav a[aria-current="page"] { color: var(--terracotta); }
+.cover { background: var(--white); }
+.cover img { width: 100%; height: calc(100svh - 190px); min-height: 380px; object-fit: cover; object-position: 50% 62%; }
+.intro { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 5vw; align-items: end; padding: clamp(50px, 7vw, 100px) var(--pad); }
+.intro h1 { font-family: var(--display); font-weight: 800; font-size: clamp(46px, 6.4vw, 108px); line-height: 0.92; letter-spacing: -0.045em; margin: 0; }
+.intro h1 em { color: var(--terracotta); font-size: 1.1em; }
+.intro p { max-width: 460px; margin: 0 0 24px; }
+main.col { padding-top: 50px; }
+.pp { padding-top: 50px; }
+.plain .top__title { font-family: var(--body); font-weight: 600; font-size: 40px; letter-spacing: 0.1em; }
+.plain .top__sub, .plain .top__nav { font-family: var(--body); letter-spacing: 0.04em; }
+.plain .top { border-bottom: 1px solid var(--greige); }
+@media (max-width: 860px) { .intro { grid-template-columns: minmax(0, 1fr); } .cover img { height: 62svh; } }
