@@ -95,9 +95,8 @@
     });
   }
 
-  /* Project page compare slider */
-  var compare = document.querySelector(".compare");
-  if (compare) {
+  /* Compare sliders (one or more per page) */
+  document.querySelectorAll(".compare").forEach(function (compare) {
     var range = compare.querySelector("input[type=range]");
     var top = compare.querySelector(".compare__model");
     var divider = compare.querySelector(".compare__divider");
@@ -109,5 +108,5 @@
     };
     range.addEventListener("input", set);
     set();
-  }
+  });
 })();
