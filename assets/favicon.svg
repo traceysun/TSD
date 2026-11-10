@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#484A4B"/><text x="32" y="41" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="700" font-size="22" fill="#E8E6DC" letter-spacing="1">TSD</text><rect x="16" y="47" width="32" height="3" rx="1.5" fill="#A67963"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path fill="#484A4B" d="M0 0h64v64H0z"/>
+  <g fill="#F7F7F5">
+    <path d="M6 25h16v4h-6v10h-4V29H6z"/>
+    <path d="M24 29c0-3 3-4 8-4s8 1 8 4h-4c0-1-2-1-4-1s-4 0-4 1 2 1 4 1c5 0 8 1 8 4 0 4-3 5-8 5s-8-1-8-4h4c0 1 2 1 4 1s4 0 4-1-2-1-4-1c-5 0-8-1-8-5z"/>
+    <path fill-rule="evenodd" d="M42 25h8c5 0 8 2 8 7s-3 7-8 7h-8zm4 4v6h4c3 0 4-1 4-3s-1-3-4-3z"/>
+  </g>
+</svg>

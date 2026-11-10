@@ -14,7 +14,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
-<script>if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))document.documentElement.className="js";</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"TSD","description":"Flat-rate interior design for homes and startup offices.","url":"https://tsd.suntracey.workers.dev/","email":"suntracey0327@gmail.com","image":"https://tsd.suntracey.workers.dev/assets/og.jpg","areaServed":"United States","priceRange":"$$"}
 </script>
@@ -37,97 +36,76 @@
   <section class="cover">
     <img src="assets/hero-room.jpg" alt="A TSD living room: stone fireplace wall with the fire on, a brown corduroy sofa, a cognac leather lounge chair, a glass coffee table and an arc lamp on a moss green rug">
   </section>
-  <section class="intro">
-    <h1>Rooms that <em>feel like you.</em></h1>
+  <section class="intro wrap">
+    <h1>Interior design for homes &amp; startup offices</h1>
     <div>
-      <p>Full interior design: layout, furniture, lighting, colors and styling, all shown to you before anything is ordered. One simple price per square foot.</p>
-      <div class="actions">
-        <a class="btn" href="#contact">Say hello <span aria-hidden="true">→</span></a>
-        <a class="btn btn--line" href="pricing/">What does it cost?</a>
-      </div>
+      <p>I plan the layout, select furniture, lighting and finishes, and show you the room in 3D before you order anything.</p>
+      <a class="text-link" href="pricing/">View pricing →</a>
     </div>
   </section>
 
-  <div class="marq" aria-hidden="true">
-    <div class="marq__track">
-      <span>Flat rate per sq ft</span><span><em>homes</em></span><span>Startup offices</span><span><em>Kentucky</em></span><span>New York City</span><span><em>San Francisco</em></span>
-      <span>Flat rate per sq ft</span><span><em>homes</em></span><span>Startup offices</span><span><em>Kentucky</em></span><span>New York City</span><span><em>San Francisco</em></span>
-    </div>
-  </div>
-
-  <section class="flip" id="flip" aria-label="From 3D model to finished room">
-    <div class="flip__sticky">
-      <div class="flip__text">
-        <p class="label">How I work</p>
-        <h2 class="big"><span class="flip__a">First I <em>design</em> it.</span><span class="flip__b">Then it's <em>real.</em></span></h2>
-        <p>I plan the layout and pick the furniture, lighting, colors and finishes, then show you the whole room in 3D. Keep scrolling to flip this one over.</p>
-      </div>
-      <div class="flip__scene">
-        <div class="flip__card">
-          <img src="assets/dining-model.jpg" alt="3D model of a long kitchen and dining room">
-          <img src="assets/dining-photo.jpg" alt="The finished kitchen and dining room with a walnut table, leather chairs and a lounge corner by tall windows">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="rooms" id="projects">
-    <div class="wrap rooms__head" data-r>
+  <section class="rooms wrap" id="projects">
+    <div class="rooms__head">
       <div>
-        <p class="label">Project 01 · A light-filled home</p>
-        <h2 class="big">One house, <em>many moods.</em></h2>
+        <p class="label">Project 01</p>
+        <h2>A light-filled home</h2>
       </div>
-      <a href="home/">See the whole project →</a>
+      <a class="text-link" href="home/">View project →</a>
     </div>
-    <div class="ring" id="ring">
-      <div class="ring__spin">
-        <a class="panel" style="--i:0" href="home/#den"><img src="assets/detail-den-chair.jpg" alt="Cognac leather lounge chair on a green rug"><span>Living, furnished</span></a>
-        <a class="panel" style="--i:1" href="home/#kitchen"><img src="assets/detail-cabinets.jpg" alt="Oak kitchen cabinets with under-cabinet light"><span>The kitchen</span></a>
-        <a class="panel" style="--i:2" href="home/#dining"><img src="assets/detail-dining.jpg" alt="Walnut dining table with leather cantilever chairs"><span>Dining</span></a>
-        <a class="panel" style="--i:3" href="home/#living"><img src="assets/detail-chair.jpg" alt="Cream lounge chair in afternoon light"><span>The living room</span></a>
-        <a class="panel" style="--i:4" href="home/#den"><img src="assets/detail-den-table.jpg" alt="Chrome and glass coffee table with a mushroom lamp"><span>Coffee table</span></a>
-        <a class="panel" style="--i:5" href="home/#dining"><img src="assets/detail-console.jpg" alt="Walnut console with a lamp under a framed print"><span>The entry</span></a>
+    <div class="room-grid">
+      <a href="home/#living"><img src="assets/detail-chair.jpg" alt="Cream lounge chair in afternoon light" loading="lazy"><span>Living room</span></a>
+      <a href="home/#den"><img src="assets/detail-den-chair.jpg" alt="Cognac leather lounge chair on a green rug" loading="lazy"><span>Living room, furnished</span></a>
+      <a href="home/#kitchen"><img src="assets/detail-cabinets.jpg" alt="Oak kitchen cabinets with under-cabinet light" loading="lazy"><span>Kitchen</span></a>
+      <a href="home/#dining"><img src="assets/detail-dining.jpg" alt="Walnut dining table with leather cantilever chairs" loading="lazy"><span>Dining &amp; lounge</span></a>
+    </div>
+    <div class="study">
+      <h3>Dining room study</h3>
+      <div class="study__images">
+        <figure>
+          <img src="assets/dining-model.jpg" alt="3D model showing the dining table and lounge next to the kitchen" loading="lazy">
+          <figcaption class="cap">3D model</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/dining-photo.jpg" alt="The dining room with a walnut table, leather chairs and a lounge corner by tall windows" loading="lazy">
+          <figcaption class="cap">Finished room</figcaption>
+        </figure>
       </div>
     </div>
-    <p class="hint">Drag to spin · tap a room to open it</p>
   </section>
 
-  <section class="hello" id="about">
-    <div class="hello__pic" data-r><img data-tilt src="assets/detail-den-sofa.jpg" alt="Brown corduroy sofa with a rack of records and a stack of books on a green rug" loading="lazy"></div>
-    <div class="hello__text" data-r>
-      <p class="label">Hello</p>
-      <h2 class="big">I'm <em>Tracey.</em></h2>
-      <p>I'm an interior designer trained in architecture, and I love the small things that make a room feel good: <em>afternoon light on a wall,</em> a chair you want to sink into, a kitchen that simply works.</p>
-      <p>TSD keeps it easy. Tell me about your space, I'll give you one clear price, and we'll make something you love coming home to.</p>
-      <p class="sig">Tracey</p>
+  <section class="hello wrap" id="about">
+    <div class="hello__pic"><img src="assets/detail-den-sofa.jpg" alt="Brown corduroy sofa with a rack of records and a stack of books on a green rug" loading="lazy"></div>
+    <div class="hello__text">
+      <p class="label">About</p>
+      <h2>I'm Tracey.</h2>
+      <p>I trained in architecture before working in interiors. I start with the layout and the light, then work out what furniture, lighting and finishes belong in the room.</p>
+      <p>I work with homeowners and startup teams across the US.</p>
     </div>
   </section>
 
-  <section class="teaser" data-r>
-    <p class="label">Pricing, kept simple</p>
-    <h2 class="big">From <em>$1</em> per square foot.</h2>
-    <a class="btn" href="pricing/">See what yours would cost <span aria-hidden="true">→</span></a>
+  <section class="teaser wrap">
+    <p class="label">Pricing</p>
+    <h2>Home design from $1 per sq ft</h2>
+    <a class="text-link" href="pricing/">Use the pricing calculator <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="steps-sec" id="process">
-    <div data-r>
-      <p class="label">Four easy steps</p>
-      <h2 class="big">How we'll <em>work together.</em></h2>
+  <section class="steps-sec wrap" id="process">
+    <div>
+      <h2>How I work</h2>
     </div>
     <ol class="steps">
-      <li data-r><b>01</b><h3>Let's chat</h3><p>A free 20-minute call about your space, how you use it and your budget.</p></li>
-      <li data-r><b>02</b><h3>Show me around</h3><p>Send photos and a few measurements, or I'll come measure.</p></li>
-      <li data-r><b>03</b><h3>Design together</h3><p>Layout, furniture, lighting, colors and materials, shown in 3D. Tell me what you love.</p></li>
-      <li data-r><b>04</b><h3>Make it real</h3><p>A full shopping list, drawings and styling notes, and I stay on call while it comes together.</p></li>
+      <li><b>01</b><h3>First call</h3><p>A free 20-minute call about your space, how you use it and your budget.</p></li>
+      <li><b>02</b><h3>Measure</h3><p>Send photos and a few measurements, or I'll come measure.</p></li>
+      <li><b>03</b><h3>Design review</h3><p>Review the layout, furniture, lighting and materials in 3D before we finalize the design.</p></li>
+      <li><b>04</b><h3>Handoff</h3><p>I send the shopping list, drawings and styling notes, and stay available for questions.</p></li>
     </ol>
   </section>
 
-  <section class="faq-sec" id="faq">
-    <div data-r>
-      <p class="label">Good questions</p>
-      <h2 class="big">Things people <em>ask.</em></h2>
+  <section class="faq-sec wrap" id="faq">
+    <div>
+      <h2>Questions</h2>
     </div>
-    <div class="faq" data-r>
+    <div class="faq">
       <details><summary>What does the flat rate include?</summary><p>The full interior design for your space: layout, furniture, lighting, colors, materials and styling, with 3D views, a shopping list and rounds of changes. Furniture, materials and construction are paid separately, straight to the stores and contractors, with no markup from me.</p></details>
       <details><summary>How do you measure square footage?</summary><p>Only the rooms we're designing. We agree on the number during our first call, and your price is locked in after that.</p></details>
       <details><summary>Do you work remotely?</summary><p>Yes, anywhere in the US. Recent projects are in Kentucky, New York City and San Francisco. In-person visits can be added (travel at cost).</p></details>
@@ -137,26 +115,25 @@
     </div>
   </section>
 
-  <section class="contact" id="contact">
-    <div data-r>
+  <section class="contact wrap" id="contact">
+    <div>
       <p class="label">Free 20-minute chat</p>
-      <h2 class="big">Say <em>hello.</em></h2>
+      <h2>Say hello</h2>
       <a class="contact__mail" href="mailto:suntracey0327@gmail.com">suntracey0327@gmail.com</a>
     </div>
-    <form class="form" id="book-form" data-r>
+    <form class="form" id="book-form">
       <label>Your name<input type="text" name="name" required autocomplete="name"></label>
       <label>Email<input type="email" name="email" required autocomplete="email"></label>
       <label>I'm thinking about<select name="type"><option>A room in my home</option><option>My whole home</option><option>Our startup office</option><option>Not sure yet</option></select></label>
       <label>Rough size (sq ft)<input type="number" name="size" min="0" inputmode="numeric"></label>
       <label>Tell me about it<textarea name="notes" rows="3"></textarea></label>
-      <button class="btn" type="submit">Send it my way <span aria-hidden="true">→</span></button>
+      <button class="btn" type="submit">Draft email <span aria-hidden="true">→</span></button>
       <p class="form__note">Opens your email app with everything filled in.</p>
     </form>
   </section>
 </main>
 
 <footer class="foot">
-  <div class="foot__word" aria-hidden="true">TSD</div>
   <div class="foot__row"><span>© 2026 TSD</span><span>Kentucky · New York City · San Francisco</span><a href="mailto:suntracey0327@gmail.com">suntracey0327@gmail.com</a></div>
 </footer>
 <script src="app.js"></script>
