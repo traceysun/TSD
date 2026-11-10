@@ -14,62 +14,65 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* 3D modeled living room for the title page (CSS 3D boxes, no libraries) */
-  var room = document.getElementById("room3d");
-  var rstage = room && room.querySelector(".room3d__stage");
-  var yaw = -28, pitch = -15, yawT = -28, rdrag = false, rlast = 0;
-  if (rstage) {
-    var W = 600, H = 300, D = 460;
-    var sh = [0.86, 1, 0.9, 0.8, 1.08, 0.7];
-    var box = function (x, y, z, w, h, d, c, faces, radius) {
-      var el = document.createElement("div"); el.className = "bx";
-      el.style.transform = "translate3d(" + (x - W / 2) + "px," + (H / 2 - y - h) + "px," + (z - D / 2) + "px)";
-      var f = [[w, h, ""], [w, h, "translateZ(" + d + "px)"], [d, h, "rotateY(-90deg)"], [d, h, "translateX(" + w + "px) rotateY(-90deg)"], [w, d, "rotateX(90deg)"], [w, d, "translateY(" + h + "px) rotateX(90deg)"]];
-      f.forEach(function (s, i) {
-        var a = document.createElement("i");
-        a.style.cssText = "width:" + s[0] + "px;height:" + s[1] + "px;transform:" + (s[2] || "none") + ";background:" + ((faces && faces[i]) || c) + ";filter:brightness(" + sh[i] + ")" + (radius ? ";border-radius:" + radius : "");
-        el.appendChild(a);
-      });
-      rstage.appendChild(el);
-    };
-    var wall = "#EDE7DD", oak = "#DCCDB6", stone = "#BEB8AE", moss = "#666B33", cord = "#4B332A", cognac = "#A9592E", chrome = "#C9CCCE", dark = "#1D1D1D";
-    box(-8, -8, -8, W + 16, 8, D + 8, oak);                                  // floor
-    box(-8, 0, -8, W + 16, H, 8, wall);                                      // back wall
-    box(-8, 0, 0, 8, H, D, wall);                                            // left wall
-    box(W, 0, 0, 8, H, 190, wall);                                           // right wall (short)
-    box(0, 0, 150, 2, 250, 250, "#3A3C3D", { 3: "linear-gradient(#B9C6CC 0 62%, #CDBFA8 62% 100%)" });   // window
-    box(2, 200, 150, 3, 50, 250, "#35373A");                                 // blind
-    box(215, 0, 0, 170, 262, 16, stone);                                     // fireplace wall
-    box(243, 150, 16, 114, 64, 4, dark);                                     // TV
-    box(240, 62, 16, 120, 32, 3, dark, { 1: "radial-gradient(ellipse at 50% 95%, #FFB347 0 14%, #C8501A 30%, #1D1D1D 62%)" }); // fire
-    box(170, 140, 0, 5, 60, 5, dark); box(425, 140, 0, 5, 60, 5, dark);      // sconces
-    box(W - 3, 0, 60, 3, 215, 70, "#F3CC8E");                                // warm doorway
-    box(60, 0, 140, 480, 3, 280, moss);                                      // rug
-    box(70, 0, 190, 100, 42, 200, cord, null, "10px");                       // sofa seat
-    box(50, 0, 190, 34, 82, 200, cord, null, "12px");                        // sofa back
-    box(96, 42, 205, 44, 26, 44, "#8D7362", null, "8px");                    // cushion
-    box(440, 0, 250, 86, 38, 92, cognac, null, "12px");                      // lounge chair seat
-    box(500, 0, 250, 40, 88, 92, cognac, null, "14px");                      // lounge chair back
-    box(470, 38, 274, 30, 26, 44, "#7A3B5E", null, "6px");                   // striped cushion
-    box(250, 46, 240, 130, 4, 92, "rgba(90,84,78,0.55)");                    // glass top
-    [[252, 242], [374, 242], [252, 326], [374, 326]].forEach(function (p) { box(p[0], 0, p[1], 4, 46, 4, chrome); });
-    box(268, 50, 262, 16, 18, 16, "#FFE7BF", null, "8px 8px 2px 2px");       // mushroom lamp
-    box(318, 50, 290, 40, 3, 28, "#F2EEE6");                                 // open book
-    box(425, 0, 70, 24, 46, 24, "#F1F0EC");                                  // marble lamp base
-    box(435, 46, 80, 4, 222, 4, chrome);                                     // lamp pole
-    box(350, 264, 80, 89, 4, 4, chrome);                                     // lamp arm
-    box(332, 238, 68, 34, 28, 28, chrome, null, "14px 14px 4px 4px");        // lamp shade
-    box(110, 0, 400, 54, 38, 30, "rgba(40,36,34,0.85)");                     // record rack
-    box(190, 3, 410, 46, 8, 34, "#E9E4DC");                                  // books
-    var fit = function () { rstage.style.setProperty("--k", (room.clientWidth / 860).toFixed(3)); };
-    fit(); window.addEventListener("resize", fit);
-    rstage.style.setProperty("--ry", yaw); rstage.style.setProperty("--rx", pitch);
-    if (!reduce) {
-      room.addEventListener("pointerdown", function (e) { rdrag = true; rlast = e.clientX; });
-      window.addEventListener("pointermove", function (e) { if (rdrag) { yawT = clamp(yawT + (e.clientX - rlast) * 0.4, -62, -4); rlast = e.clientX; } }, { passive: true });
-      window.addEventListener("pointerup", function () { rdrag = false; });
-      window.addEventListener("pointercancel", function () { rdrag = false; });
-    }
+  /* Depth photo: the real room photo with a depth map, so it shifts in 3D as you look around */
+  var depthEl = document.getElementById("depth");
+  var drawDepth = null, ddrag = false, dlastX = 0, dlastY = 0, dox = 0, doy = 0, dtx = 0, dty = 0;
+  if (depthEl && !reduce) {
+    (function () {
+      var cv = depthEl.querySelector("canvas");
+      var gl = cv.getContext("webgl", { antialias: false }) || cv.getContext("experimental-webgl");
+      if (!gl) return;
+      var sh = function (type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
+      var pr = gl.createProgram();
+      gl.attachShader(pr, sh(gl.VERTEX_SHADER, "attribute vec2 a;varying vec2 v;void main(){v=a*0.5+0.5;gl_Position=vec4(a,0.,1.);}"));
+      gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, "precision mediump float;varying vec2 v;uniform sampler2D i;uniform sampler2D d;uniform vec2 o;void main(){vec2 uv=(v-0.5)/1.07+0.5;vec2 p=uv;for(int k=0;k<4;k++){float z=texture2D(d,p).r;p=uv+o*(z-0.32);}gl_FragColor=texture2D(i,clamp(p,0.002,0.998));}"));
+      gl.linkProgram(pr);
+      if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+      gl.useProgram(pr);
+      var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(pr, "a"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      var uo = gl.getUniformLocation(pr, "o");
+      gl.uniform1i(gl.getUniformLocation(pr, "i"), 0); gl.uniform1i(gl.getUniformLocation(pr, "d"), 1);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+      var ready = 0;
+      var tex = function (unit, src) {
+        var im = new Image();
+        im.onload = function () {
+          var t = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+          if (++ready === 2) { size(); depthEl.classList.add("on"); }
+        };
+        im.src = src;
+      };
+      var size = function () {
+        var r = Math.min(window.devicePixelRatio || 1, 2);
+        cv.width = Math.round(depthEl.clientWidth * r); cv.height = Math.round(depthEl.clientHeight * r);
+        gl.viewport(0, 0, cv.width, cv.height);
+      };
+      window.addEventListener("resize", size);
+      tex(0, "assets/hero-room.jpg"); tex(1, "assets/hero-room-depth.jpg");
+      depthEl.addEventListener("pointerdown", function (e) { ddrag = true; dlastX = e.clientX; dlastY = e.clientY; });
+      window.addEventListener("pointermove", function (e) {
+        if (!ddrag) return;
+        dtx = clamp(dtx + (e.clientX - dlastX) / 260, -1, 1); dty = clamp(dty + (e.clientY - dlastY) / 260, -1, 1);
+        dlastX = e.clientX; dlastY = e.clientY;
+      }, { passive: true });
+      var up = function () { ddrag = false; };
+      window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+      drawDepth = function (t) {
+        if (ready < 2) return;
+        var b = depthEl.getBoundingClientRect();
+        if (b.bottom < 0 || b.top > window.innerHeight) return;
+        var gx = dtx + (ddrag ? 0 : px * 1.6 + Math.sin(t / 2400) * 0.35), gy = dty + (ddrag ? 0 : py * 1.2);
+        dox += (clamp(gx, -1.2, 1.2) - dox) * 0.08; doy += (clamp(gy, -1.2, 1.2) - doy) * 0.08;
+        gl.uniform2f(uo, dox * 0.026, -doy * 0.018);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        depthEl.style.setProperty("--ty", (dox * 5).toFixed(2) + "deg"); depthEl.style.setProperty("--tx", (-doy * 4).toFixed(2) + "deg");
+      };
+    })();
   }
 
   /* Motion: 3D hero scene, scroll flip, spinning ring. One animation loop. */
@@ -109,12 +112,7 @@
         stage.style.setProperty("--rx", rx.toFixed(2));
         stage.style.setProperty("--ry", ry.toFixed(2));
       }
-      if (rstage) {
-        var tgt = clamp(yawT + (rdrag ? 0 : px * 14 + Math.sin(t / 2600) * 5) + clamp(window.scrollY / window.innerHeight, 0, 1) * 18, -64, -2);
-        yaw += (tgt - yaw) * 0.07;
-        rstage.style.setProperty("--ry", yaw.toFixed(2));
-        rstage.style.setProperty("--rx", (pitch - py * 5).toFixed(2));
-      }
+      if (drawDepth) drawDepth(t);
       if (flip) {
         var r = flip.getBoundingClientRect();
         var span = flip.offsetHeight - window.innerHeight;
