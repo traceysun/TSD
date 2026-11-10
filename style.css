@@ -197,3 +197,8 @@ h3 { font-size: 23px; margin: 0; }
 .js .compare[data-m] img { clip-path: none; }
 .room-grid a img { transition: scale .6s cubic-bezier(.2,.7,.2,1); }
 .room-grid a:hover img { scale: 1.04; }
+
+/* Project 02 additions */
+.room img.wide { width: 100%; height: auto; }
+.rooms--next { margin-top: var(--space); }
+.col .study__note { margin-top: 0; }

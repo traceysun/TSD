@@ -10,7 +10,7 @@
   var rise = document.querySelectorAll(
     "main h1, main h2, main .label, .intro p, .intro .text-link, .study h3, .study__note, .hello__text p, .hello__text .text-link, " +
     ".contact__intro, .contact__mail, .pp__lede, .rooms__head .text-link, .room-grid a, .study figure, .steps li, .faq details, " +
-    ".hello__pic, .form, .compare, .stack img, .story, .facts"
+    ".hello__pic, .form, .compare, .stack img, .story, .facts, img.wide"
   );
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
