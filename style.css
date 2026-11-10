@@ -81,6 +81,7 @@ h3 { font-size: 23px; margin: 0; }
 .study h3 { margin-bottom: 16px; }
 .study__images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .study__images img { width: 100%; aspect-ratio: 1654 / 1376; object-fit: cover; }
+.study__plan { margin-top: 24px; }
 .hello { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 7vw, 100px); }
 .hello__pic img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; }
 .hello__text p:not(.label) { max-width: 45ch; margin: 14px 0 0; }
