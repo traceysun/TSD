@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Syne:wght@500;700;800&display=swap");
 
 :root {
-  --linen: #E8E6DC; --paper: #EEF0ED; --stone: #D3D0CB; --greige: #C9C6C0;
+  --linen: #F7F7F5; --paper: #EEF0ED; --stone: #D3D0CB; --greige: #C9C6C0;
   --sand: #C9BFAE; --grey: #656461; --charcoal: #484A4B; --terracotta: #A67963; --white: #FFFFFF;
   --display: "Syne", "Arial Black", sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
