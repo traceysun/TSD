@@ -207,3 +207,13 @@ h3 { font-size: 23px; margin: 0; }
 .rooms__head h2 { max-width: 24ch; }
 .ptitle__img { margin-top: 24px; }
 .ptitle__img img { width: 100%; height: auto; }
+
+/* Pieces list (replaces zoomed detail crops) */
+.pieces { margin: 0; border-top: 1px solid var(--stone); }
+.pieces > div { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid var(--stone); }
+.pieces dt { font: 400 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--grey); padding-top: 4px; }
+.pieces dd { margin: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; }
+.pieces strong { font-weight: 700; }
+.pieces a, .pieces__none { font: 400 13px var(--mono); }
+.pieces__none { color: var(--grey); }
+@media (max-width: 560px) { .pieces > div { grid-template-columns: minmax(0, 1fr); } }
