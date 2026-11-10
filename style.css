@@ -147,3 +147,5 @@ img { max-width: 100%; display: block; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+.tiles--two { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 8px; }
+@media (max-width: 720px) { .tiles--two { grid-template-columns: minmax(0, 1fr); } }
