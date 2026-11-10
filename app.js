@@ -43,7 +43,7 @@
           '<p class="card__fee">Your price: ' + money(total) + (raw < p.min ? " (minimum)" : "") + "</p>" +
           '<p class="card__meta">' + money(p.min) + " minimum · ready in " + esc(p.time) + "</p>" +
           "<ul>" + p.items.map(function (it) { return "<li>" + esc(it) + "</li>"; }).join("") + "</ul>" +
-          '<a href="../#contact" class="choose">Choose this</a></article>';
+          '<a href="../contact/" class="choose">Choose this</a></article>';
       }).join("");
       document.getElementById("sqft-label").textContent = COPY[aud].label;
       document.getElementById("sqft-hint").textContent = COPY[aud].hint;
