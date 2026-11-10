@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://traceysun.github.io/TSD/sitemap.xml
+Sitemap: https://tsd.suntracey.workers.dev/sitemap.xml
