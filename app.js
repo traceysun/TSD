@@ -1,18 +1,84 @@
 (function () {
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
 
-  /* Hero: tap to toggle between the finished room and the 3D model (hover does it on desktop). */
-  var hero = document.querySelector(".hero");
-  if (hero) {
-    var hint = hero.querySelector(".hero__hint");
-    var toggle = function () {
-      var on = hero.getAttribute("aria-pressed") !== "true";
-      hero.setAttribute("aria-pressed", String(on));
-      if (hint) hint.textContent = on ? "Show the finished room" : "Show the 3D model";
+  /* Scroll reveals */
+  var reveals = document.querySelectorAll("[data-r]");
+  if (!reduce && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* Motion: 3D hero scene, scroll flip, spinning ring. One animation loop. */
+  var stage = document.querySelector(".scene__stage");
+  var flip = document.getElementById("flip");
+  var ring = document.getElementById("ring");
+  var spin = ring && ring.querySelector(".ring__spin");
+  var px = 0, py = 0, rx = 4, ry = -14;
+  var angle = 0, vel = 0.1, dragging = false, lastX = 0, moved = 0;
+
+  if (!reduce) {
+    window.addEventListener("pointermove", function (e) {
+      px = e.clientX / window.innerWidth - 0.5;
+      py = e.clientY / window.innerHeight - 0.5;
+    }, { passive: true });
+
+    if (ring) {
+      ring.addEventListener("pointerdown", function (e) { dragging = true; moved = 0; lastX = e.clientX; });
+      window.addEventListener("pointermove", function (e) {
+        if (!dragging) return;
+        var dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx);
+        angle += dx * 0.3; vel = dx * 0.3;
+      }, { passive: true });
+      var end = function () { dragging = false; };
+      window.addEventListener("pointerup", end);
+      window.addEventListener("pointercancel", end);
+      ring.addEventListener("click", function (e) { if (moved > 6) e.preventDefault(); });
+      ring.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    }
+
+    var frame = function (t) {
+      if (stage) {
+        var sp = clamp(window.scrollY / window.innerHeight, 0, 1);
+        var tx = 4 - py * 9 - sp * 6;
+        var ty = -14 + px * 14 + sp * 26 + Math.sin(t / 1900) * 2.5;
+        rx += (tx - rx) * 0.06; ry += (ty - ry) * 0.06;
+        stage.style.setProperty("--rx", rx.toFixed(2));
+        stage.style.setProperty("--ry", ry.toFixed(2));
+      }
+      if (flip) {
+        var r = flip.getBoundingClientRect();
+        var span = flip.offsetHeight - window.innerHeight;
+        var p = span > 0 ? clamp(-r.top / span, 0, 1) : 0;
+        var q = clamp((p - 0.12) / 0.62, 0, 1);
+        q = q * q * (3 - 2 * q);
+        flip.style.setProperty("--p", q.toFixed(3));
+      }
+      if (spin) {
+        if (!dragging) { vel += (0.1 - vel) * 0.03; angle += vel; }
+        spin.style.setProperty("--a", angle.toFixed(2));
+      }
+      window.requestAnimationFrame(frame);
     };
-    hero.addEventListener("click", toggle);
-    hero.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+    window.requestAnimationFrame(frame);
+
+    /* Tilt on hover for pricing cards and tagged images */
+    document.addEventListener("pointermove", function (e) {
+      var el = e.target.closest && e.target.closest("[data-tilt], .card");
+      if (!el) return;
+      var b = el.getBoundingClientRect();
+      el.style.setProperty("--ty", (((e.clientX - b.left) / b.width - 0.5) * 9).toFixed(2) + "deg");
+      el.style.setProperty("--tx", ((0.5 - (e.clientY - b.top) / b.height) * 9).toFixed(2) + "deg");
+    }, { passive: true });
+    document.addEventListener("pointerout", function (e) {
+      var el = e.target.closest && e.target.closest("[data-tilt], .card");
+      if (el && !el.contains(e.relatedTarget)) { el.style.setProperty("--tx", "0deg"); el.style.setProperty("--ty", "0deg"); }
+    });
   }
 
   /* Pricing calculator */
@@ -47,7 +113,6 @@
     var input = document.getElementById("sqft");
     var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); };
     var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
-    var check = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
     var render = function () {
       var size = sizes[aud] > 0 ? sizes[aud] : 0;
       cards.innerHTML = PACKAGES[aud].map(function (p) {
@@ -59,7 +124,7 @@
           '<div class="card__rate"><strong>$' + p.rate.toFixed(2) + "</strong><span>per sq ft</span></div>" +
           '<p class="card__fee">Your price: ' + money(total) + (raw < p.min ? " (minimum)" : "") + "</p>" +
           '<p class="card__meta">' + money(p.min) + " minimum · ready in " + esc(p.time) + "</p>" +
-          "<ul>" + p.items.map(function (it) { return "<li>" + check + "<span>" + esc(it) + "</span></li>"; }).join("") + "</ul>" +
+          "<ul>" + p.items.map(function (it) { return "<li>" + esc(it) + "</li>"; }).join("") + "</ul>" +
           '<a href="#contact" class="choose">I want this one</a></article>';
       }).join("");
       document.getElementById("sqft-label").textContent = COPY[aud].label;
@@ -82,20 +147,20 @@
     render();
   }
 
-  /* Booking form: opens the visitor's email app, pre-filled. */
+  /* Contact form: opens the visitor's email app, pre-filled. */
   var form = document.getElementById("book-form");
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var d = new FormData(form);
-      var body = "Name: " + d.get("name") + "\nEmail: " + d.get("email") + "\nDesigning: " + d.get("type") +
-        "\nApprox. size: " + (d.get("size") || "?") + " sq ft\n\n" + d.get("notes");
+      var body = "Name: " + d.get("name") + "\nEmail: " + d.get("email") + "\nThinking about: " + d.get("type") +
+        "\nRough size: " + (d.get("size") || "?") + " sq ft\n\n" + d.get("notes");
       window.location.href = "mailto:suntracey0327@gmail.com?subject=" +
-        encodeURIComponent("Free call request: " + d.get("type")) + "&body=" + encodeURIComponent(body);
+        encodeURIComponent("Hello from the TSD site: " + d.get("type")) + "&body=" + encodeURIComponent(body);
     });
   }
 
-  /* Compare sliders (one or more per page) */
+  /* Compare sliders on the project page */
   document.querySelectorAll(".compare").forEach(function (compare) {
     var range = compare.querySelector("input[type=range]");
     var top = compare.querySelector(".compare__model");
